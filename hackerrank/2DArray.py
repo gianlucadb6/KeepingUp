@@ -1,5 +1,5 @@
 """
-
+sum up all numbers in the hourglass shape throughout the array and return the largest
 """
 
 def hourglassSum(arr):
