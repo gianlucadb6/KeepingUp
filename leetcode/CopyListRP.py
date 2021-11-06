@@ -19,14 +19,18 @@ class Solution(object):
         :type head: Node
         :rtype: Node
         """
-        newHead = Node(head.val, None, None)
-        prev = newHead
-        ptr = head.next
+        ptr = head  
         while ptr != None:
-            newPtr = Node(ptr.val, None, None)
-            prev.next = newPtr
-            prev = newPtr
-            ptr = ptr.next
+            newNode = Node(ptr.val, ptr.next, ptr.random)
+            ptr.next = newNode
+            ptr = newNode.next
+        newHead = head.next
+        ptr = newHead
+        ptrNext = ptr.next
+        while ptrNext != None:
+            ptr.next = ptrNext.next
+            ptr = ptrNext
+            ptrNext = ptr.next
         return newHead
-
-#in progress
+        
+#in progress. should work, but not allowed to modify original list
