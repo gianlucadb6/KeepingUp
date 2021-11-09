@@ -4,6 +4,25 @@ An arcade game player wants to climb to the top of the leaderboard and track the
 The player with the highest score is ranked number 1  on the leaderboard.
 Players who have equal scores receive the same ranking number, and the next player(s) receive the immediately following ranking number.
 """
+
+def climbingLeaderboard(ranked, player):
+    playerRankings = []
+    ranked = sorted(set(ranked))
+    for score in player:
+        topRanking = False
+        rank = len(ranked)+1
+        for r in ranked:
+            if score < r:
+                playerRankings.append(rank)
+                topRanking = True
+                break
+            rank -= 1
+        if not topRanking:
+            playerRankings.append(rank)
+    return playerRankings
+#going in reverse makes it alightly faster, beating 1 more test czse, but still failing 3 of the original 4 failed for time complexity
+
+"""
 def climbingLeaderboard(ranked, player):
     playerRankings = []
     ranked = sorted(set(ranked), reverse=True)
@@ -19,8 +38,9 @@ def climbingLeaderboard(ranked, player):
         if not topRanking:
             playerRankings.append(rank)
     return playerRankings
-
+"""
 #used set instead of list to condense the number of elements to be checked, but still having timing issues. i guess when turning a list into a set, ordering is not maintained so i am forced to sort the set. this may be my issue for exceeding the time limit, or there is an easier way to do this     
+
 
 """
 def climbingLeaderboard(ranked, player):
@@ -42,5 +62,4 @@ def climbingLeaderboard(ranked, player):
                     playerRankings.append(rank)
     return playerRankings
 """
-
 #timeout cases failing
