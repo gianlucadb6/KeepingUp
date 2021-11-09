@@ -4,6 +4,22 @@ An arcade game player wants to climb to the top of the leaderboard and track the
 The player with the highest score is ranked number 1  on the leaderboard.
 Players who have equal scores receive the same ranking number, and the next player(s) receive the immediately following ranking number.
 """
+def climbingLeaderboard(ranked, player):
+    playerRankings = []
+    ranked = sorted(set(ranked), reverse=True)
+    topRanking = False
+    for score in player:
+        rank = 1
+        for r in ranked:
+            if score >= r:
+                playerRankings.append(rank)
+                topRanking = True
+                break
+            rank += 1
+        if not topRanking:
+            playerRankings.append(rank)
+    return playerRankings
+     
 
 def climbingLeaderboard(ranked, player):
     playerRankings = []
