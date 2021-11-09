@@ -8,20 +8,20 @@ Players who have equal scores receive the same ranking number, and the next play
 def climbingLeaderboard(ranked, player):
     playerRankings = []
     for score in player:
-        i = 1
-        topRanking = False
-        for j in range(len(ranked)):
-            if score >= ranked[j]:
-                playerRankings.append(i)
-                topRanking = True
+        rank = 1
+        for i in range(len(ranked)):
+            if score >= ranked[i]:
+                playerRankings.append(rank)
                 break
-            try:
-                if ranked[j] == ranked[j+1]:
-                    continue
-            except:
-                i+=1
-        if not topRanking:
-            playerRankings.append(i)
+            else:
+                try:
+                    if ranked[i] == ranked[i+1]:
+                        continue
+                    else:
+                        rank+=1
+                except:
+                    rank+=1
+                    playerRankings.append(rank)
     return playerRankings
 
-#in the works
+#timeout cases failing
