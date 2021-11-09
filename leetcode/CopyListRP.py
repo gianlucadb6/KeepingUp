@@ -19,18 +19,22 @@ class Solution(object):
         :type head: Node
         :rtype: Node
         """
-        ptr = head  
+        dict = {}
+        prev = None
+        ptr = head
         while ptr != None:
-            newNode = Node(ptr.val, ptr.next, ptr.random)
-            ptr.next = newNode
-            ptr = newNode.next
-        newHead = head.next
-        ptr = newHead
-        ptrNext = ptr.next
-        while ptrNext != None:
-            ptr.next = ptrNext.next
-            ptr = ptrNext
-            ptrNext = ptr.next
-        return newHead
-        
-#in progress. should work, but not allowed to modify original list
+            if ptr not in dict:
+                dict[ptr] = Node(ptr.val, ptr.next, ptr.random)
+            if prev != None:
+                prev.next = dict[ptr]
+            else:
+                head = dict[ptr]
+            if ptr.random != None:
+                if ptr.random not in dict:
+                    dict[ptr.random] = Node(ptr.random.val, ptr.random.next, ptr.random.random)
+                dict[ptr].random = dict[ptr.random]
+            prev = dict[ptr] 
+            ptr = ptr.next
+        return head
+                    
+#complteted     
