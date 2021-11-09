@@ -19,8 +19,10 @@ def climbingLeaderboard(ranked, player):
         if not topRanking:
             playerRankings.append(rank)
     return playerRankings
-     
 
+#used set instead of list to condense the number of elements to be checked, but still having timing issues. i guess when turning a list into a set, ordering is not maintained so i am forced to sort the set. this may be my issue for exceeding the time limit, or there is an easier way to do this     
+
+"""
 def climbingLeaderboard(ranked, player):
     playerRankings = []
     for score in player:
@@ -39,5 +41,6 @@ def climbingLeaderboard(ranked, player):
                     rank+=1
                     playerRankings.append(rank)
     return playerRankings
+"""
 
 #timeout cases failing
