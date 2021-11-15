@@ -12,16 +12,23 @@ class Solution(object):
         :type node: Node
         :rtype: Node
         """
+        queue = []
         visited = []
-        newList = []
-        cur = node
-        while cur not in visited:
-            visited.append(cur)
-            newList.append(Node(cur.val, cur.neighbors))
-            for n in cur.neighbors:
-                if n not in visited:
-                    cur = n
-        return newList
-            
+        dict = {}
+        queue.append(node)
+        def bfs(queue):
+            while queue:
+                cur = queue.pop()
+                if cur not in visited:
+                    visited.append(cur)
+                    dict[cur.val] = Node(cur.val, None)
+                    tempNeighbors = []
+                    for n in cur.neighbors:
+                        if not dict.get(n):
+                            queue.append(n)
+                            bfs(queue)
+                    dict[cur.val].neighbors = tempNeighbors
+        bfs(queue)
+        return dict.get(1) 
 
-#doesn't work. getting some ideas together
+#coming together. using bfs but i need to make sure this is doing what i think its doing. interesting to see that in one way i created a dictionary somewhere in memory but when referenced differently its just a list of nodes.
