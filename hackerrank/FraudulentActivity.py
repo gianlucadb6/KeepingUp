@@ -5,7 +5,7 @@ HackerLand National Bank has a simple policy for warning clients about possible 
 def activityNotifications(expenditure, d):
     # Write your code here
     notifications = 0
-    for i in range(len(expenditure)):
+    for i in range(d-1, len(expenditure)):
         if i+1 > d:
             med = statistics.median(expenditure[i-d:i])
             if expenditure[i] >= 2*med:
