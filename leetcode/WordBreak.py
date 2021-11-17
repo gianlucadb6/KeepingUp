@@ -1,5 +1,5 @@
 """
-
+Given a string s and a dictionary of strings wordDict, return true if s can be segmented into a space-separated sequence of one or more dictionary words.
 """
 
 class Solution(object):
@@ -9,13 +9,13 @@ class Solution(object):
         :type wordDict: List[str]
         :rtype: bool
         """
-        for pre in wordDict:
-            if s.startswith(pre):
-                wordDict.remove(pre)
-                s = s[len(pre)-1:]
-        if not wordDict:
-            return True
-        else:
-            return False
+        while s:
+            for pre in wordDict:
+                if s.__contains__(pre):
+                    s = s.replace(pre, "")
+                    break
+                else:
+                    return False
+        return True
 
-#need to check the rest of the string, not just once for each word in the dictionary
+#i think this should work, i am missing something simple
