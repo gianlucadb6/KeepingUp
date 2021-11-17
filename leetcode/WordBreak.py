@@ -10,12 +10,14 @@ class Solution(object):
         :rtype: bool
         """
         while s:
+            found = False
             for pre in wordDict:
                 if s.__contains__(pre):
                     s = s.replace(pre, "")
+                    found = True
                     break
-                else:
-                    return False
+            if not found:
+                return False
         return True
 
-#i think this should work, i am missing something simple
+#i think i may be confused, but works for a few cases. one of the cases i am getting wrong seems like one of the examples in the description and this code should pass that case.
