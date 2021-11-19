@@ -10,22 +10,23 @@ class Solution(object):
         """
         ptr = head
         prev = None
-        if ptr.next:
+        prev2 = None
+        if ptr and ptr.next:
             prev = ptr
             ptr = ptr.next
         else:
             return
-        head = prev
+        head = ptr
         while ptr and prev:
-            #temp = ptr
             prev.next = ptr.next
             ptr.next = prev
             prev = prev.next
             if prev:
+                prev2 = ptr
                 ptr = prev.next
             else:
                 break
         return head
-            
+                        
         
-#some initial ideas
+#some initial ideas. 3rd pointer help?
