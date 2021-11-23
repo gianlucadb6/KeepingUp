@@ -9,19 +9,23 @@ class Solution(object):
         :rtype: int
         """
         length = 0
+        max = 0
         if s:
-            max = 0
             leftParen = []
-            leftParen.append(s[0])
-            for i in range(1, len(s)):
+            for i in range(len(s)):
                 cur = s[i]
-                prev = leftParen.pop()
-                if prev == '(' and cur == ')':
-                    length+=2
+                if cur == ')':
+                    if leftParen:
+                        prev = leftParen.pop()
+                        if prev:
+                            length+=2
+                    else:
+                        if length >= max:
+                            max = length
+                        length = 0        
                 else:
-                    leftParen.append(s[i])
-                    continue
-                i+=1
-                if i < len(s):
-                    leftParen.append(s[i])
-        return length
+                    leftParen.append(cur)
+                    
+                if length >= max:
+                    max = length
+        return max
