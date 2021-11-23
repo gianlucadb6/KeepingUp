@@ -8,18 +8,20 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        max = 0
         length = 0
-        leftParen = []
-        for paren in s:
-            if leftParen:
-                if paren == ')':
-                    length+=1
-                    continue
-            elif paren == '(':
-                leftParen.append(s)
-                continue
-            if length > max:
-                max = length
+        if s:
+            max = 0
             leftParen = []
-        return max
+            leftParen.append(s[0])
+            for i in range(1, len(s)):
+                cur = s[i]
+                prev = leftParen.pop()
+                if prev == '(' and cur == ')':
+                    length+=2
+                else:
+                    leftParen.append(s[i])
+                    continue
+                i+=1
+                if i < len(s):
+                    leftParen.append(s[i])
+        return length
