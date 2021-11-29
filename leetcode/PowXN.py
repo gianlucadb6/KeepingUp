@@ -14,4 +14,5 @@ class Solution(object):
         elif n == 1:
             return x
         else:
-            return x*self.myPow(x,n-1)
+            return x*self.myPow(x,n-1) if n > 0 else 1/x*self.myPow(x,n+1) 
+            
