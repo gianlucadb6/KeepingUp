@@ -11,8 +11,12 @@ class Solution(object):
         """
         if n == 0:
             return 1
-        elif n == 1:
+        elif n == 1 or n == -1:
             return x
         else:
-            return x*self.myPow(x,n-1) if n > 0 else 1/x*self.myPow(x,n+1) 
+            if n > 0:
+                return self.myPow(x, n//2)*self.myPow(x,n//2) if n%2==0 else self.myPow(x, n//2)*self.myPow(x,n//2) * x 
+            else:
+                return 1/x*self.myPow(x,n//2)*1/x*self.myPow(x,n//2) if n%2==0 else 1/x*self.myPow(x,n//2)*1/x*self.myPow(x,n//2) * 1/x
             
+        
