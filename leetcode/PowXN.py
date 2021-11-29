@@ -12,6 +12,6 @@ class Solution(object):
         if n == 0:
             return 1
         elif n == 1:
-            return n
+            return x
         else:
-            return n*n*self.myPow(x,n-2)
+            return x*self.myPow(x,n-1)
